@@ -8,20 +8,23 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    private Group root;
-    private Scene Scene;
-    private Stage Stage;
-
     @Override
     public void start(Stage stage)
     {
-        root = new Group();
-        Stage=new Stage();
-        Scene = new Scene(root,Global.widgetWidth,Global.widgetHeight);
-        Stage.setScene(Scene);
-        Stage.setMaximized(true);
-        Stage.setResizable(true);
-        Stage.show();
+        Group root = new Group();
+        javafx.stage.Stage stage1 = new Stage();
+        javafx.scene.Scene scene = new Scene(root, Global.widgetWidth, Global.widgetHeight);
+        stage1.setScene(scene);
+        stage1.setMaximized(true);
+        stage1.setResizable(true);
+        stage1.show();
+
+
+
+        Entity sphere = new Entity(500,500,-500,200,"sun-texture.jpg") ;
+
+        root.getChildren().add(sphere.getEntity());
+
 
     }
 
