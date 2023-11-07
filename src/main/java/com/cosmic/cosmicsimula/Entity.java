@@ -5,7 +5,8 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 
 
-public class Entity {
+
+public abstract class Entity {
 
     private String name;
     private double posX;
@@ -26,9 +27,9 @@ public class Entity {
     private Sphere entity;
 
 
-    public Entity(float posX,float posY, float posZ, float radius, String imagePath)
+    public Entity(String name,float posX,float posY, float posZ, float radius, String imagePath)
     {
-
+        this.name = name;
         this.posX = posX;
         this.posY = posY;
         this.posZ = posZ;
@@ -54,9 +55,14 @@ public class Entity {
 
     }
 
-    public Entity(String imagePath)
+    public Entity(String name,String imagePath)
     {
-        this(0,0,0,100,imagePath);
+        this(name,0,0,0,100,imagePath);
+    }
+
+    public Entity()
+    {
+        this("untitled",0,0,0,100,"no-texture.png");
     }
 
 
@@ -128,5 +134,16 @@ public class Entity {
     public Sphere getEntity() {
         return entity;
     }
+
+
+    public void setRotationSpeed(double rotationSpeed)
+    {
+        this.rotationSpeed = rotationSpeed;
+    }
+
+    public abstract void evolve();
+
+
+
 
 }

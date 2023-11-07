@@ -1,8 +1,10 @@
 package com.cosmic.cosmicsimula;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -19,11 +21,27 @@ public class App extends Application {
         stage1.setResizable(true);
         stage1.show();
 
+        scene.setFill(Color.BLACK);
+
+        _Camera camera = new _Camera();
+        Star sun = new Star("Sun","sun-texture.jpg") ;
+        sun.setRotationSpeed(0.5);
 
 
-        Entity sphere = new Entity(500,500,-500,200,"sun-texture.jpg") ;
+        scene.setCamera(camera.getCamera());
+        root.getChildren().add(sun.getEntity());
 
-        root.getChildren().add(sphere.getEntity());
+        camera.setCameraPos(-500,-300,200);
+
+
+        AnimationTimer gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+
+                sun.evolve();
+            }
+        };
+        gameLoop.start();
 
 
     }
